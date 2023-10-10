@@ -43,7 +43,7 @@ export const POST = async (req: NextRequest) => {
         try {
             const page = await browser.newPage();
             await page.goto(url, {
-                waitUntil: "domcontentloaded",
+                waitUntil: "networkidle2",
                 timeout: TIMEOUT_DURATION
             });
 
