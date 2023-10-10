@@ -40,6 +40,11 @@ export default function Home() {
           },
           body: JSON.stringify({ url }),
         });
+
+        if (!response.ok) {
+          throw new Error(`Server responded with an error: ${response.status}`);
+        }
+
         const jsonData = await response.json();
 
         const updatedHistory = [...history, { url, data: jsonData }];
@@ -48,8 +53,9 @@ export default function Home() {
         setData(jsonData);
 
         localStorage.setItem("scrapingHistory", JSON.stringify(updatedHistory));
-      } catch (err) {
+      } catch (err: any) {
         console.error(err);
+        alert(err.message);
       } finally {
         setLoading(false);
       }
@@ -57,7 +63,6 @@ export default function Home() {
       alert("Please enter a valid URL.");
     }
   };
-
 
   const handleHistoryClick = (clickedUrl: string) => {
     const historyItem = history.find(item => item.url === clickedUrl);
