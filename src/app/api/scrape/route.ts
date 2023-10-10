@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import puppeteer, { Page } from "puppeteer";
 
 const MAX_RETRIES = 3;
-const TIMEOUT_DURATION = 30000; // 30 seconds
+const TIMEOUT_DURATION = 30000; // 30 seconds 
 
 const launchBrowser = async () => {
     return await puppeteer.launch({
