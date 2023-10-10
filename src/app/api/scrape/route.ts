@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import puppeteer from "puppeteer";
 
-export const POST = async (req: NextRequest, res: NextResponse) => {
+export const POST = async (req: Request) => {
     const data = await req.json();
     const url = data.url;
     const MAX_RETRIES = 3;
@@ -48,13 +48,14 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
             retries++;
             if (retries === MAX_RETRIES) {
                 console.error({ error });
-                return Response.json({
+                return NextResponse.json({
                     error: error.message || 'Failed to scrape the page'
                 }, { status: 500 });
+                
             }
         }
     }
 
     await browser.close();
-    return Response.json(result);
+    return NextResponse.json(result);
 };
