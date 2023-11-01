@@ -7,7 +7,7 @@ const TIMEOUT_DURATION = 30000; // 30 seconds
 const launchBrowser = async () => {
     return await puppeteer.launch({
         headless: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
     });
 };
 
